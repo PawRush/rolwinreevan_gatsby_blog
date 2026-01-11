@@ -72,18 +72,6 @@ module.exports = [
       javascriptEnabled: true,
     },
   },
-  {
-    resolve: 'gatsby-plugin-eslint-v2',
-    options: {
-      test: /\.js$|\.jsx$/,
-      exclude: /(node_modules|.cache|public)/,
-      stages: ['develop'],
-      options: {
-        emitWarning: true,
-        failOnError: false,
-      },
-    },
-  },
   // Temporarily disabled for testing - requires GA_TRACKING_ID env variable
   // {
   //   resolve: 'gatsby-plugin-google-analytics',
