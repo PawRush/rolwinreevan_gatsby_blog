@@ -4,12 +4,25 @@ const path = require('path');
 const config = require('./config');
 const utils = require('./src/utils/pageUtils');
 
+// Handle canvas module for react-pdf SSR compatibility
+exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
+  if (stage === 'build-html' || stage === 'develop-html') {
+    actions.setWebpackConfig({
+      externals: [
+        {
+          canvas: 'commonjs canvas',
+        },
+      ],
+    });
+  }
+};
+
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions;
 
   return graphql(`
     {
-      allMarkdownRemark(sort: {order: DESC, fields: [frontmatter___date]}) {
+      allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}) {
         edges {
           node {
             frontmatter {
@@ -20,7 +33,7 @@ exports.createPages = ({ actions, graphql }) => {
           }
         }
       }
-    }    
+    }
   `).then((result) => {
     if (result.errors) return Promise.reject(result.errors);
 

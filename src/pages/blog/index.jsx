@@ -62,9 +62,11 @@ export const query = graphql`
             excerpt
             cover {
               childImageSharp {
-                fluid(maxWidth: 288) {
-                  ...GatsbyImageSharpFluid_tracedSVG
-                }
+                gatsbyImageData(
+                  width: 288
+                  placeholder: TRACED_SVG
+                  formats: [AUTO, WEBP]
+                )
               }
             }
           }
