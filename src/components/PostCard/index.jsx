@@ -1,11 +1,15 @@
 import React from 'react';
 import moment from 'moment';
 import { Link } from 'gatsby';
-import style from './postCard.module.less';
+import { getSrc } from 'gatsby-plugin-image';
+import * as style from './postCard.module.less';
 import Utils from '../../utils/pageUtils';
 
 const PostCard = (props) => {
   const { data: { node: { frontmatter } } } = props;
+  const imageSrc = frontmatter && frontmatter.cover
+    ? getSrc(frontmatter.cover.childImageSharp.gatsbyImageData)
+    : '';
 
   return (
     <div className={style.postCard}>
@@ -13,7 +17,7 @@ const PostCard = (props) => {
         <div
           className={style.postCardImg}
           style={{
-            backgroundImage: `url(${frontmatter ? frontmatter.cover.childImageSharp.fluid.src : ''})`,
+            backgroundImage: `url(${imageSrc})`,
           }}
         />
         <div className={style.mrTp20}>

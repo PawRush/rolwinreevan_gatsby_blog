@@ -5,6 +5,7 @@ import {
 } from 'antd';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
+import { getSrc } from 'gatsby-plugin-image';
 import Header from '../../components/PageLayout/Header';
 import SEO from '../../components/Seo';
 import SidebarWrapper from '../../components/PageLayout/Sidebar';
@@ -41,7 +42,7 @@ const Tags = ({ data }) => {
                 edges.map((val) => (
                   <Col key={val.node.name} xs={24} sm={24} md={12} lg={8}>
                     <TagCard
-                      img={val.node.childImageSharp.fluid.src}
+                      img={getSrc(val.node.childImageSharp.gatsbyImageData)}
                       name={val.node.name}
                       description={tagData[val.node.name].description}
                       color={tagData[val.node.name].color}
@@ -76,7 +77,7 @@ Tags.propTypes = {
           node: PropTypes.shape({
             name: PropTypes.string.isRequired,
             childImageSharp: PropTypes.shape({
-              fluid: PropTypes.object.isRequired,
+              gatsbyImageData: PropTypes.object.isRequired,
             }).isRequired,
           }).isRequired,
         }).isRequired,
@@ -101,9 +102,11 @@ export const query = graphql`
         node {
           name
           childImageSharp {
-            fluid(maxWidth: 400) {
-              ...GatsbyImageSharpFluid_tracedSVG
-            }
+            gatsbyImageData(
+              width: 400
+              placeholder: TRACED_SVG
+              formats: [AUTO, WEBP]
+            )
           }
         }
       }

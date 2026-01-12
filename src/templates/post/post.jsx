@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout } from 'antd';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import Header from '../../components/PageLayout/Header';
 import SidebarWrapper from '../../components/PageLayout/Sidebar';
 import SEO from '../../components/Seo';
@@ -11,13 +11,14 @@ import Utils from '../../utils/pageUtils';
 
 import 'prismjs/themes/prism-solarizedlight.css';
 import './highlight-syntax.less';
-import style from './post.module.less';
+import * as style from './post.module.less';
 
 const Post = ({ data }) => {
   const { html, frontmatter } = data.markdownRemark;
   const {
-    title, cover: { childImageSharp: { fluid } }, excerpt, path,
+    title, cover, excerpt, path,
   } = frontmatter;
+  const image = getImage(cover);
 
   const canonicalUrl = Utils.resolvePageUrl(
     Config.siteUrl,
@@ -38,7 +39,7 @@ const Post = ({ data }) => {
           <div className="marginTopTitle">
             <h1>{title}</h1>
             <div className={style.bannerImgContainer}>
-              <Img className={style.bannerImg} fluid={fluid} title={excerpt} alt={title} />
+              <GatsbyImage className={style.bannerImg} image={image} title={excerpt} alt={title} />
             </div>
             <article className={style.blogArticle} dangerouslySetInnerHTML={{ __html: html }} />
             <Comment pageCanonicalUrl={canonicalUrl} pageId={title} />
@@ -62,9 +63,11 @@ export const pageQuery = graphql`
         excerpt
         cover {
           childImageSharp {
-            fluid(maxWidth: 1000) {
-              ...GatsbyImageSharpFluid_tracedSVG
-            }
+            gatsbyImageData(
+              width: 1000
+              placeholder: TRACED_SVG
+              formats: [AUTO, WEBP]
+            )
           }
         }
       }
@@ -84,9 +87,11 @@ export const pageQuery = graphql`
             excerpt
             cover {
               childImageSharp {
-                fluid(maxWidth: 600) {
-                  ...GatsbyImageSharpFluid_tracedSVG
-                }
+                gatsbyImageData(
+                  width: 600
+                  placeholder: TRACED_SVG
+                  formats: [AUTO, WEBP]
+                )
               }
             }
           }
