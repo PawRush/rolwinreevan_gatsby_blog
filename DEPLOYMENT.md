@@ -10,11 +10,15 @@ last_updated: 2026-01-16T16:27:00Z
 
 # Deployment Summary
 
-Your app is deployed to AWS with a 'preview' URL that doesn't change when you update GitHub. Share this link with others.
+Your app has a CodePipeline pipeline. Changes pushed to the `deploy-to-aws` branch on GitHub will be deployed automatically.
 
-To connect deployments to GitHub changes, ask your coding agent to `setup a AWS CodePipeline`.
+**Pipeline Console**: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/GatsbyBlogPipeline/view
 
-Services used: CloudFront, S3, CloudFormation, IAM
+**Preview URL** (manual deployments): https://d1kii5o78zdw86.cloudfront.net
+
+**Production URL** (pipeline deployments): Will be available after first pipeline run completes
+
+Services used: CodePipeline, CodeBuild, CodeConnections, CloudFront, S3, CloudFormation, IAM
 
 Questions? Ask your Coding Agent:
  - What resources were deployed to AWS?
@@ -23,17 +27,23 @@ Questions? Ask your Coding Agent:
 ## Quick Commands
 
 ```bash
-# View deployment status
-aws cloudformation describe-stacks --stack-name "GatsbyBlogFrontend-preview-sergeyka" --query 'Stacks[0].StackStatus' --output text --no-cli-pager
+# View pipeline status
+aws codepipeline get-pipeline-state --name "GatsbyBlogPipeline" --query 'stageStates[*].[stageName,latestExecution.status]' --output table --no-cli-pager
 
-# Invalidate CloudFront cache
-aws cloudfront create-invalidation --distribution-id "ERH2VY2LOW91H" --paths "/*" --no-cli-pager
+# View build logs
+aws logs tail "/aws/codebuild/GatsbyBlogPipelineStack-Synth" --follow --no-cli-pager
 
-# View CloudFront access logs (last hour)
-aws s3 ls "s3://gatsbyblogfrontend-previe-cftos3cloudfrontloggingb-yhmqvvputvec/" --recursive | tail -20
+# Trigger pipeline manually
+aws codepipeline start-pipeline-execution --name "GatsbyBlogPipeline" --no-cli-pager
 
-# Redeploy
+# Deploy to production via pipeline
+git push origin deploy-to-aws
+
+# Manual preview deployment (bypass pipeline)
 ./scripts/deploy.sh
+
+# View preview deployment status
+aws cloudformation describe-stacks --stack-name "GatsbyBlogFrontend-preview-sergeyka" --query 'Stacks[0].StackStatus' --output text --no-cli-pager
 ```
 
 ## Production Readiness

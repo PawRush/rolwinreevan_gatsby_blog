@@ -1,11 +1,12 @@
 ---
-sop_name: deploy-frontend-app
+sop_name: deploy-codepipeline
 repo_name: rolwinreevan_gatsby_blog
 app_name: GatsbyBlog
-app_type: Frontend Application (Gatsby Static Site)
+app_type: CI/CD Pipeline
 branch: deploy-to-aws
-created: 2026-01-16T16:14:00Z
-last_updated: 2026-01-16T16:27:00Z
+created: 2026-01-16T16:30:00Z
+last_updated: 2026-01-16T16:30:00Z
+previous_sop: deploy-frontend-app
 ---
 
 # Deployment Plan: GatsbyBlog

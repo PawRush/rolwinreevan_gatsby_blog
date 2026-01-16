@@ -4,6 +4,14 @@
 
 See `./DEPLOYMENT.md` for deployment status, logs, troubleshooting, and next steps.
 
-The application is deployed to AWS using the [deploy-frontend-app] Agent Standard Operation Procedure from the [AWS MCP](https://docs.aws.amazon.com/aws-mcp/latest/userguide/what-is-mcp-server.html).
+The application is deployed to AWS using:
+1. [deploy-frontend-app] - Initial CloudFront + S3 deployment
+2. [deploy-codepipeline] - CI/CD pipeline for automated deployments
 
-Deployment URL: https://d1kii5o78zdw86.cloudfront.net
+**Pipeline**: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/GatsbyBlogPipeline/view
+
+**Preview URL** (manual): https://d1kii5o78zdw86.cloudfront.net
+
+**Production URL** (pipeline): Available after pipeline completes
+
+To deploy changes: Push to `deploy-to-aws` branch
