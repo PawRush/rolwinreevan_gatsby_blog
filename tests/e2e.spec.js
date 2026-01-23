@@ -44,7 +44,7 @@ test.describe('Gatsby Blog E2E Tests', () => {
 
   // Blog Post Tests - using known blog post URL
   test('can view a blog post directly', async ({ page }) => {
-    await page.goto('/whats-new-in-react17');
+    await page.goto('/blog/react17-new-features');
     await page.waitForLoadState('domcontentloaded');
     
     const h1 = page.locator('h1').first();
@@ -52,7 +52,7 @@ test.describe('Gatsby Blog E2E Tests', () => {
   });
 
   test('blog post displays content', async ({ page }) => {
-    await page.goto('/whats-new-in-react17');
+    await page.goto('/blog/react17-new-features');
     await page.waitForLoadState('domcontentloaded');
     
     // Just verify the page loaded and has content
@@ -61,7 +61,7 @@ test.describe('Gatsby Blog E2E Tests', () => {
   });
 
   test('can navigate back to blog from post', async ({ page }) => {
-    await page.goto('/whats-new-in-react17');
+    await page.goto('/blog/react17-new-features');
     await page.waitForLoadState('domcontentloaded');
     
     const blogLink = page.locator('a[href*="/blog"], a:has-text("Blog")').first();
@@ -72,7 +72,7 @@ test.describe('Gatsby Blog E2E Tests', () => {
   // Tags Tests
   test('tags page displays tag cards', async ({ page }) => {
     await page.goto('/tags');
-    await expect(page).toHaveURL('/tags');
+    await expect(page).toHaveURL('/tags/');
     await expect(page.locator('h1:has-text("Tags"), h1:has-text("#Tags")')).toBeVisible();
     await page.waitForSelector('.ant-col', { timeout: 10000 });
     const tagCards = page.locator('.ant-col');
@@ -90,7 +90,7 @@ test.describe('Gatsby Blog E2E Tests', () => {
   // Contact Form Tests
   test('contact page displays form with all fields', async ({ page }) => {
     await page.goto('/contact');
-    await expect(page).toHaveURL('/contact');
+    await expect(page).toHaveURL('/contact/');
     
     const form = page.locator('form');
     await expect(form).toBeVisible();
