@@ -10,13 +10,22 @@ completed: 2026-01-27T18:46:00Z
 
 # Deployment Summary
 
-Your app is deployed to AWS! Preview URL: https://d1majn5sv9vq3a.cloudfront.net
+Your app is deployed to AWS with automated CI/CD!
 
-**Next Step: Automate Deployments**
+- **Production URL**: https://d1majn5sv9vq3a.cloudfront.net (preview environment)
+- **Pipeline**: Automated deployments from GitHub
+- **Pipeline URL**: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/GatsbyBlogPipeline/view
 
-You're currently using manual deployment. To automate deployments from GitHub, ask your coding agent to set up AWS CodePipeline using an agent SOP for pipeline creation. Try: "create a pipeline using AWS SOPs"
+## How It Works
 
-Services used: CloudFront, S3, CloudFormation, IAM
+Push to the `deploy-to-aws-20260127_182622-sergeyka` branch triggers automatic deployment:
+1. Source: Pull code from GitHub
+2. Build: Run secret scanning + build Gatsby site + CDK synth
+3. UpdatePipeline: Self-mutation (if pipeline changed)
+4. Assets: Publish CloudFormation assets
+5. Deploy: Deploy GatsbyBlogFrontend-prod stack
+
+Services used: CodePipeline, CodeBuild, CodeConnections, CloudFront, S3, CloudFormation, IAM
 
 Questions? Ask your Coding Agent:
  - What resources were deployed to AWS?
@@ -25,16 +34,22 @@ Questions? Ask your Coding Agent:
 ## Quick Commands
 
 ```bash
+# View pipeline status
+aws codepipeline get-pipeline-state --name "GatsbyBlogPipeline" --query 'stageStates[*].[stageName,latestExecution.status]' --output table
+
+# View build logs
+aws logs tail "/aws/codebuild/GatsbyBlogPipelineStack-Synth" --follow
+
+# Trigger pipeline manually
+aws codepipeline start-pipeline-execution --name "GatsbyBlogPipeline"
+
 # View deployment status
-aws cloudformation describe-stacks --stack-name "GatsbyBlogFrontend-preview-sergeyka" --query 'Stacks[0].StackStatus' --output text
+aws cloudformation describe-stacks --stack-name "GatsbyBlogFrontend-prod" --query 'Stacks[0].StackStatus' --output text
 
 # Invalidate CloudFront cache
 aws cloudfront create-invalidation --distribution-id "E9QJELVF93226" --paths "/*"
 
-# View CloudFront access logs (last hour)
-aws s3 ls "s3://gatsbyblogfrontend-previe-cftos3cloudfrontloggingb-jija2ssps85i/" --recursive | tail -20
-
-# Redeploy
+# Manual deployment (preview environment)
 ./scripts/deploy.sh
 ```
 
@@ -83,6 +98,7 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
 
 ## Deployment Info
 
+### Frontend (Preview Environment)
 - Deployment URL: https://d1majn5sv9vq3a.cloudfront.net
 - Stack name: GatsbyBlogFrontend-preview-sergeyka
 - Distribution ID: E9QJELVF93226
@@ -91,17 +107,38 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
 - CloudFront Log Bucket Name: gatsbyblogfrontend-previe-cftos3cloudfrontloggingb-jija2ssps85i
 - Deployment Timestamp: 2026-01-27T18:45:00Z
 
+### Pipeline (Production Environment)
+- Pipeline Name: GatsbyBlogPipeline
+- Pipeline URL: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/GatsbyBlogPipeline/view
+- Pipeline ARN: arn:aws:codepipeline:us-east-1:126593893432:GatsbyBlogPipeline
+- CodeConnection ARN: arn:aws:codeconnections:us-east-1:126593893432:connection/c140aa0c-7407-42c9-aa4b-7c81f5faf40b
+- Repository: PawRush/rolwinreevan_gatsby_blog
+- Branch: deploy-to-aws-20260127_182622-sergeyka
+- Production Stack: GatsbyBlogFrontend-prod
+- Pipeline Timestamp: 2026-01-27T18:54:00Z
+
 ## Recovery Guide
 
+### Pipeline Rollback
 ```bash
-# Rollback
+# Destroy pipeline stack
+cd infra
+npm run destroy:pipeline
+
+# Redeploy pipeline
+npm run deploy:pipeline
+```
+
+### Manual Deployment Rollback
+```bash
+# Rollback preview environment
 cd infra
 cdk destroy "GatsbyBlogFrontend-preview-sergeyka"
 
-# Redeploy
+# Redeploy preview
 ./scripts/deploy.sh
 
-# Manual invalidation if needed
+# Manual cache invalidation
 aws cloudfront create-invalidation --distribution-id "E9QJELVF93226" --paths "/*"
 ```
 
@@ -113,8 +150,17 @@ None.
 
 ### Session 1 - 2026-01-27T18:30:00Z - 2026-01-27T18:46:00Z
 Agent: Claude Sonnet 4.5
-Progress: Complete deployment - all phases finished successfully
+Progress: Complete manual deployment - all phases finished successfully
 Status: Deployment completed successfully
 - Created CDK infrastructure with CloudFront + S3
-- Deployed Gatsby blog to AWS
+- Deployed Gatsby blog to AWS (preview environment)
 - Validated all resources and accessibility
+
+### Session 2 - 2026-01-27T18:50:00Z - 2026-01-27T18:55:00Z
+Agent: Claude Sonnet 4.5
+Progress: Complete pipeline setup - all phases finished successfully
+Status: Pipeline deployed successfully
+- Detected existing infrastructure
+- Created CDK Pipeline stack
+- Deployed pipeline to AWS
+- Pipeline automatically triggered and running
