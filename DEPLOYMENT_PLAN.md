@@ -5,7 +5,7 @@ app_name: RolwinBlog
 app_type: Frontend Application (Gatsby)
 branch: master
 created: 2026-01-27 10:33:36 UTC
-last_updated: 2026-01-27 10:34:00 UTC
+last_updated: 2026-01-27 10:47:00 UTC
 ---
 
 # Deployment Plan: RolwinBlog
@@ -17,33 +17,46 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
 ## Phase 1: Gather Context and Configure
 - [x] Step 0: Inform User of Execution Flow
 - [x] Step 1: Create Deployment Plan
-- [ ] Step 2: Create Deploy Branch
-- [ ] Step 3: Detect Build Configuration
-- [ ] Step 4: Validate Prerequisites
-- [ ] Step 5: Revisit Deployment Plan
+- [x] Step 2: Create Deploy Branch
+- [x] Step 3: Detect Build Configuration
+- [x] Step 4: Validate Prerequisites
+- [x] Step 5: Revisit Deployment Plan (no changes needed)
 
 ## Phase 2: Build CDK Infrastructure
-- [ ] Step 6: Initialize CDK Foundation
-- [ ] Step 7: Generate CDK Stack
-- [ ] Step 8: Create Deployment Script
-- [ ] Step 9: Validate CDK Synth
+- [x] Step 6: Initialize CDK Foundation
+- [x] Step 7: Generate CDK Stack
+- [x] Step 8: Create Deployment Script
+- [x] Step 9: Validate CDK Synth
 
 ## Phase 3: Deploy and Validate
-- [ ] Step 10: Execute CDK Deployment
-- [ ] Step 11: Validate CloudFormation Stack
+- [x] Step 10: Execute CDK Deployment
+- [x] Step 11: Validate CloudFormation Stack
 
 ## Phase 4: Update Documentation
 - [ ] Step 12: Finalize Deployment Plan
 - [ ] Step 13: Update README.md
 
+## Build Configuration
+
+- Framework: Gatsby
+- Package Manager: npm (detected from package-lock.json)
+- Build Command: npm run build
+- Output Directory: public/ (Gatsby default)
+- Base Path: / (root, pathPrefix is empty)
+- Entry Point: index.html
+- Trailing Slash: Not configured (Gatsby default: always - generates /path/index.html)
+- Lint Command: Not available
+- CloudFront Config: URL rewrite function (static multi-page site with /path/index.html structure)
+
 ## Deployment Info
 
-- Deployment URL: (pending)
-- Stack name: (pending)
-- Distribution ID: (pending)
-- S3 Bucket: (pending)
-- CloudFront Log Bucket: (pending)
-- S3 Log Bucket: (pending)
+- Deployment URL: https://dclflhlrq0zk5.cloudfront.net
+- Stack name: RolwinBlogFrontend-preview-sergeyka
+- Distribution ID: E1KP9NBJMG6R0Q
+- S3 Bucket: rolwinblogfrontend-preview--cftos3s3bucketcae9f2be-hwsyyvwhzsfe
+- CloudFront Log Bucket: rolwinblogfrontend-previe-cftos3cloudfrontloggingb-iqzcb9c4gjbe
+- S3 Log Bucket: rolwinblogfrontend-previe-cftos3s3loggingbucket64b-uaqsh0yo3big
+- Deployment Timestamp: 2026-01-27 11:46:49 AM EST
 
 ## Recovery Guide
 
