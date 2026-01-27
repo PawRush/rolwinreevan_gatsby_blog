@@ -91,4 +91,12 @@ A quick look at the top-level files and directories you'll see in a Gatsby proje
 
 14. **`content`**: This is the folder where we write our Markdowns for the blogs.
 
+## Deployment
+
+Deployed at: https://dclflhlrq0zk5.cloudfront.net, using the [deploy-frontend-app] Agent Standard Operation Procedure from the [AWS MCP](https://docs.aws.amazon.com/aws-mcp/latest/userguide/what-is-mcp-server.html).
+
+Deployment command: `./scripts/deploy.sh`
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for full details.
+
 <!-- AUTO-GENERATED-CONTENT:END -->
