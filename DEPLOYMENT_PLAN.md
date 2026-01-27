@@ -5,7 +5,7 @@ app_name: GatsbyBlog
 app_type: Frontend Application
 branch: deploy-to-aws-20260127_182622-sergeyka
 created: 2026-01-27T18:30:00Z
-last_updated: 2026-01-27T18:39:00Z
+last_updated: 2026-01-27T18:45:00Z
 ---
 
 # Deployment Plan: GatsbyBlog
@@ -31,9 +31,9 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
 - [x] Phase 2 Checkpoint
 
 ## Phase 3: Deploy and Validate
-- [ ] Step 10: Execute CDK Deployment
-- [ ] Step 11: Validate CloudFormation Stack
-- [ ] Phase 3 Checkpoint
+- [x] Step 10: Execute CDK Deployment
+- [x] Step 11: Validate CloudFormation Stack
+- [x] Phase 3 Checkpoint
 
 ## Phase 4: Update Documentation
 - [ ] Step 12: Finalize Deployment Plan
@@ -42,12 +42,13 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
 
 ## Deployment Info
 
-- Deployment URL: [after completion]
-- Stack name: [after creation]
-- Distribution ID: [after creation]
-- S3 Bucket Name: [after creation]
-- S3 Log Bucket Name: [after creation]
-- CloudFront Log Bucket Name: [after creation]
+- Deployment URL: https://d1majn5sv9vq3a.cloudfront.net
+- Stack name: GatsbyBlogFrontend-preview-sergeyka
+- Distribution ID: E9QJELVF93226
+- S3 Bucket Name: gatsbyblogfrontend-preview--cftos3s3bucketcae9f2be-b2k2maoxvh7u
+- S3 Log Bucket Name: gatsbyblogfrontend-previe-cftos3s3loggingbucket64b-yrrrv5dpomf3
+- CloudFront Log Bucket Name: gatsbyblogfrontend-previe-cftos3cloudfrontloggingb-jija2ssps85i
+- Deployment Timestamp: 2026-01-27T18:45:00Z
 
 ## Recovery Guide
 
