@@ -99,4 +99,12 @@ Deployment command: `./scripts/deploy.sh`
 
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for full details.
 
+## Pipeline
+
+Pipeline: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/RolwinBlogPipeline/view
+
+Deploy: `git push origin deploy-to-aws`
+
+Automated CI/CD pipeline set up with AWS CodePipeline. Every push to the `deploy-to-aws` branch automatically builds and deploys the application to production. Created with the [setup-pipeline] Agent Standard Operation Procedure from the [AWS MCP](https://docs.aws.amazon.com/aws-mcp/latest/userguide/what-is-mcp-server.html).
+
 <!-- AUTO-GENERATED-CONTENT:END -->

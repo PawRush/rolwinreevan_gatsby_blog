@@ -53,14 +53,23 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
 - Secretlint: Enabled (will check for secrets in code)
 
 ### Phase 2: Build and Deploy Pipeline
-- [ ] Step 3: Create CDK Pipeline Stack
-- [ ] Step 4: CDK Bootstrap
-- [ ] Step 5: Deploy Pipeline
-- [ ] Step 6: Monitor Pipeline
+- [x] Step 3: Create CDK Pipeline Stack
+- [x] Step 4: CDK Bootstrap
+- [x] Step 5: Deploy Pipeline
+- [x] Step 6: Monitor Pipeline (running successfully)
 
 ### Phase 3: Documentation
-- [ ] Step 7: Finalize Deployment Plan
+- [...] Step 7: Finalize Deployment Plan
 - [ ] Step 8: Update README.md
+
+## Pipeline Deployment Info
+
+- Pipeline Name: RolwinBlogPipeline
+- Pipeline ARN: arn:aws:codepipeline:us-east-1:126593893432:RolwinBlogPipeline
+- Pipeline URL: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/RolwinBlogPipeline/view
+- Stack Name: RolwinBlogPipelineStack
+- Trigger: Automatic on push to deploy-to-aws branch
+- Status: Running (Build stage in progress)
 
 ## Build Configuration
 
