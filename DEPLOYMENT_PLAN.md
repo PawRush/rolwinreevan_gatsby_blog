@@ -33,8 +33,34 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
 - [x] Step 11: Validate CloudFormation Stack
 
 ## Phase 4: Update Documentation
-- [ ] Step 12: Finalize Deployment Plan
-- [ ] Step 13: Update README.md
+- [x] Step 12: Finalize Deployment Plan
+- [x] Step 13: Update README.md
+
+## Pipeline Setup (setup-pipeline SOP)
+
+### Phase 1: Gather Context and Configure
+- [x] Step 0: Inform User of Execution Flow
+- [x] Step 1: Update Deployment Plan for Pipeline
+- [x] Step 2: Detect Existing Infrastructure
+- [x] Step 2.5: Use Existing CodeConnection (SKIP creation)
+
+## Pipeline Configuration
+
+- Repository: PawRush/rolwinreevan_gatsby_blog
+- Branch: deploy-to-aws
+- CodeConnection ARN: arn:aws:codeconnections:us-east-1:126593893432:connection/c140aa0c-7407-42c9-aa4b-7c81f5faf40b
+- Quality Checks: None (no lint/test scripts configured)
+- Secretlint: Enabled (will check for secrets in code)
+
+### Phase 2: Build and Deploy Pipeline
+- [ ] Step 3: Create CDK Pipeline Stack
+- [ ] Step 4: CDK Bootstrap
+- [ ] Step 5: Deploy Pipeline
+- [ ] Step 6: Monitor Pipeline
+
+### Phase 3: Documentation
+- [ ] Step 7: Finalize Deployment Plan
+- [ ] Step 8: Update README.md
 
 ## Build Configuration
 
