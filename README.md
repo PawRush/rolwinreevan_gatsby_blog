@@ -93,9 +93,15 @@ A quick look at the top-level files and directories you'll see in a Gatsby proje
 
 ## Deployment
 
-Deployed at: https://d1majn5sv9vq3a.cloudfront.net, using the [deploy-frontend-app] Agent Standard Operation Procedure from the [AWS MCP](https://docs.aws.amazon.com/aws-mcp/latest/userguide/what-is-mcp-server.html).
+**Deployed with automated CI/CD!**
 
-Deployment command: `./scripts/deploy.sh`
+- **Pipeline**: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/GatsbyBlogPipeline/view
+- **Preview URL**: https://d1majn5sv9vq3a.cloudfront.net
+- **Deploy**: `git push origin deploy-to-aws-20260127_182622-sergeyka`
+
+Infrastructure created with [deploy-frontend-app] and [setup-pipeline] Agent Standard Operation Procedures from the [AWS MCP](https://docs.aws.amazon.com/aws-mcp/latest/userguide/what-is-mcp-server.html).
+
+Manual deployment (preview): `./scripts/deploy.sh`
 
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for full details.
 
