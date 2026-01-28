@@ -47,6 +47,42 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
 - [x] Step 12: Finalize Deployment Plan
 - [x] Step 13: Update README.md
 
+---
+
+# Pipeline Setup: RolwinBlog
+
+## Pipeline Phase 1: Gather Context and Configure
+- [x] Step 0: Inform User of Execution Flow
+- [x] Step 1: Update Deployment Plan
+- [x] Step 2: Detect Existing Infrastructure
+  - [x] 2.1: Detect stacks and frontend
+  - [x] 2.2: Detect app name and git repository
+  - [x] 2.3: Determine quality checks
+  - [x] 2.4: User confirmation
+  - [x] 2.5: Configure CodeConnection
+
+### Pipeline Configuration
+- App Name: RolwinBlog
+- Repository: PawRush/rolwinreevan_gatsby_blog
+- Branch: deploy-to-aws-20260128_131744-sergeyka
+- CodeConnection ARN: arn:aws:codeconnections:us-east-1:126593893432:connection/c140aa0c-7407-42c9-aa4b-7c81f5faf40b
+- Quality Checks: None (only secretlint + build)
+- Target Environment: prod
+
+## Pipeline Phase 2: Build and Deploy Pipeline
+- [ ] Step 3: Create CDK Pipeline Stack
+- [ ] Step 4: CDK Bootstrap
+- [ ] Step 5: Deploy Pipeline
+  - [ ] 5.1: Push to remote
+  - [ ] 5.2: Authorize CodeConnection
+  - [ ] 5.3: Deploy pipeline stack
+  - [ ] 5.4: Trigger pipeline
+- [ ] Step 6: Monitor Pipeline
+
+## Pipeline Phase 3: Documentation
+- [ ] Step 7: Finalize Deployment Plan
+- [ ] Step 8: Update README.md
+
 ## Deployment Info
 
 - Deployment URL: https://d21g8av42xrr6i.cloudfront.net
