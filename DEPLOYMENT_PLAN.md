@@ -70,18 +70,26 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
 - Target Environment: prod
 
 ## Pipeline Phase 2: Build and Deploy Pipeline
-- [ ] Step 3: Create CDK Pipeline Stack
-- [ ] Step 4: CDK Bootstrap
-- [ ] Step 5: Deploy Pipeline
-  - [ ] 5.1: Push to remote
-  - [ ] 5.2: Authorize CodeConnection
-  - [ ] 5.3: Deploy pipeline stack
-  - [ ] 5.4: Trigger pipeline
-- [ ] Step 6: Monitor Pipeline
+- [x] Step 3: Create CDK Pipeline Stack
+- [x] Step 4: CDK Bootstrap
+- [x] Step 5: Deploy Pipeline
+  - [x] 5.1: Push to remote
+  - [x] 5.2: Authorize CodeConnection
+  - [x] 5.3: Deploy pipeline stack
+  - [x] 5.4: Trigger pipeline
+- [x] Step 6: Monitor Pipeline
+
+### Pipeline Info
+- Pipeline Name: RolwinBlogPipeline
+- Pipeline ARN: arn:aws:codepipeline:us-east-1:126593893432:RolwinBlogPipeline
+- Pipeline URL: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/RolwinBlogPipeline/view
+- Stack Name: RolwinBlogPipelineStack
+- Status: Active (Build stage in progress)
+- Production Stack: RolwinBlogFrontend-prod (will be deployed by pipeline)
 
 ## Pipeline Phase 3: Documentation
-- [ ] Step 7: Finalize Deployment Plan
-- [ ] Step 8: Update README.md
+- [x] Step 7: Finalize Deployment Plan
+- [x] Step 8: Update README.md
 
 ## Deployment Info
 

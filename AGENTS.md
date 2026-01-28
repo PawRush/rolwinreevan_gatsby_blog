@@ -7,11 +7,16 @@ This document contains information for AI coding agents working with this reposi
 See `./DEPLOYMENT.md` for deployment status, logs, troubleshooting, pipeline setup, and next steps.
 
 The application is deployed to AWS using:
+- CodePipeline for automated CI/CD
+- CodeBuild for building and testing
+- CodeConnections for GitHub integration
 - CloudFront for global CDN
 - S3 for static file hosting
 - CloudFormation for infrastructure management
 - CDK for infrastructure as code
 
-Deployment URL: https://d21g8av42xrr6i.cloudfront.net
+**Pipeline**: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/RolwinBlogPipeline/view
 
-To redeploy: `./scripts/deploy.sh`
+**To deploy**: `git push origin deploy-to-aws-20260128_131744-sergeyka`
+
+**Manual deployment (preview)**: `./scripts/deploy.sh`

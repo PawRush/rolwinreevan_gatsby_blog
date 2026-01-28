@@ -10,13 +10,15 @@ completed: 2026-01-28T13:36:00Z
 
 # Deployment Summary
 
-Your app is deployed to AWS! Preview URL: https://d21g8av42xrr6i.cloudfront.net
+Your app has automated CI/CD! Push to `deploy-to-aws-20260128_131744-sergeyka` branch to trigger deployment.
 
-**Next Step: Automate Deployments**
+**Pipeline URL**: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/RolwinBlogPipeline/view
 
-You're currently using manual deployment. To automate deployments from GitHub, ask your coding agent to set up AWS CodePipeline using an agent SOP for pipeline creation. Try: "create a pipeline using AWS SOPs"
+**Production URL**: Will be available after first pipeline deployment completes (https://cloudfront-domain.net)
 
-Services used: CloudFront, S3, CloudFormation, IAM
+**Preview URL**: https://d21g8av42xrr6i.cloudfront.net (manual deployment, still active)
+
+Services used: CodePipeline, CodeBuild, CodeConnections, CloudFront, S3, CloudFormation, IAM
 
 Questions? Ask your Coding Agent:
 - What resources were deployed to AWS?
@@ -25,16 +27,19 @@ Questions? Ask your Coding Agent:
 ## Quick Commands
 
 ```bash
-# View deployment status
-aws cloudformation describe-stacks --stack-name "RolwinBlogFrontend-preview-sergeyka" --query 'Stacks[0].StackStatus' --output text
+# View pipeline status
+aws codepipeline get-pipeline-state --name "RolwinBlogPipeline" --query 'stageStates[*].[stageName,latestExecution.status]' --output table
 
-# Invalidate CloudFront cache
-aws cloudfront create-invalidation --distribution-id "E3Q17KP7L2T66J" --paths "/*"
+# View build logs
+aws logs tail "/aws/codebuild/RolwinBlogPipelineStack-Synth" --follow
 
-# View CloudFront access logs (last hour)
-aws s3 ls "s3://rolwinblogfrontend-previe-cftos3cloudfrontloggingb-jm9tcf6i3hdt/" --recursive | tail -20
+# Trigger pipeline manually
+aws codepipeline start-pipeline-execution --name "RolwinBlogPipeline"
 
-# Redeploy
+# Deploy to production (via pipeline)
+git push origin deploy-to-aws-20260128_131744-sergeyka
+
+# Manual preview deployment (still available)
 ./scripts/deploy.sh
 ```
 
