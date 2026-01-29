@@ -32,14 +32,31 @@ npm run build
 
 ## Deployment Strategy
 
-The project uses AWS CDK for infrastructure management. Deployment environments are determined by a username-based preview system:
-- `preview-<username>`: Personal preview environments (auto-hotswap enabled)
-- `dev`: Shared development environment
-- `prod`: Production environment (with termination protection)
+The project uses AWS CDK for infrastructure management with two deployment methods:
 
-Deploy to different environments:
+### 1. Manual Deployment
+Deploy to preview/dev environments for testing:
 ```bash
 ./scripts/deploy.sh                  # Deploy to preview-$(whoami)
 ./scripts/deploy.sh dev              # Deploy to dev
-./scripts/deploy.sh prod             # Deploy to production
 ```
+
+### 2. CI/CD Pipeline (Recommended for Production)
+Automated deployment via AWS CodePipeline:
+- **Branch**: `deploy-to-aws-20260129_185538-sergeyka`
+- **Trigger**: Push to branch automatically triggers pipeline
+- **Target**: Production environment (GatsbyBlogFrontend-prod)
+- **Pipeline**: GatsbyBlogPipeline
+- **Console**: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/GatsbyBlogPipeline/view
+
+Deploy to production:
+```bash
+git push origin deploy-to-aws-20260129_185538-sergeyka
+```
+
+Pipeline stages:
+1. **Source**: Pull from GitHub via CodeConnection
+2. **Build**: Quality checks + CDK synthesis + secret scanning
+3. **UpdatePipeline**: Self-mutation (if pipeline changed)
+4. **Assets**: Publish CloudFormation assets
+5. **Deploy**: Deploy GatsbyBlogFrontend-prod stack
