@@ -10,13 +10,15 @@ last_updated: 2026-01-30T04:42:00Z
 
 # Deployment Summary
 
-Your app is deployed to AWS! Preview URL: https://d2dtmobc2ypry3.cloudfront.net
+Your app is deployed to AWS with automated CI/CD pipeline!
 
-**Next Step: Automate Deployments**
+**Deployments**: Preview URL: https://d2dtmobc2ypry3.cloudfront.net (manual deployment available)
 
-You're currently using manual deployment. To automate deployments from GitHub, ask your coding agent to set up AWS CodePipeline using an agent SOP for pipeline creation. Try: "create a pipeline using AWS SOPs"
+**Pipeline**: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/GatsbyBlogPipeline/view
 
-Services used: CloudFront, S3, CloudFormation, IAM
+**Automated Deployment**: Push to `deploy-to-aws-20260130_032535-sergeyka` branch to trigger production deployment
+
+Services used: CodePipeline, CodeBuild, CloudFront, S3, CloudFormation, IAM
 
 Questions? Ask your Coding Agent:
  - What resources were deployed to AWS?
@@ -25,18 +27,45 @@ Questions? Ask your Coding Agent:
 ## Quick Commands
 
 ```bash
+# Trigger pipeline deployment (automated)
+git push origin deploy-to-aws-20260130_032535-sergeyka
+
+# View pipeline status
+aws codepipeline get-pipeline-state --name "GatsbyBlogPipeline" --query 'stageStates[*].[stageName,latestExecution.status]' --output table
+
+# View build logs
+aws logs tail "/aws/codebuild/GatsbyBlogPipelineStack-Synth" --follow
+
+# Manual deployment (preview environment)
+./scripts/deploy.sh
+
 # View deployment status
-aws cloudformation describe-stacks --stack-name "GatsbyBlogFrontend-preview-sergeyka" --query 'Stacks[0].StackStatus' --output text
+aws cloudformation describe-stacks --stack-name "GatsbyBlogFrontend-prod" --query 'Stacks[0].StackStatus' --output text
 
 # Invalidate CloudFront cache
-aws cloudfront create-invalidation --distribution-id "E2Z8K4D5P1S3P4" --paths "/*"
-
-# View CloudFront access logs (last hour)
-aws s3 ls "s3://gatsbyblogfrontend-previe-cftos3cloudfrontloggingb-ifynhxpqsfnm/" --recursive | tail -20
-
-# Redeploy
-./scripts/deploy.sh
+aws cloudfront create-invalidation --distribution-id "<distribution-id>" --paths "/*"
 ```
+
+## Pipeline
+
+Your repository now has automated CI/CD via AWS CodePipeline.
+
+**Pipeline URL**: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/GatsbyBlogPipeline/view
+
+**Trigger**: Push to `deploy-to-aws-20260130_032535-sergeyka` branch
+
+**Pipeline Stages**:
+1. **Source**: Pull from GitHub via CodeConnection
+2. **Build (Synth)**: Run secret scanning (secretlint) + Gatsby build + CDK synthesis
+3. **UpdatePipeline**: Self-mutation (if pipeline code changed)
+4. **Assets**: Publish CDK assets to S3
+5. **Deploy**: Deploy GatsbyBlogFrontend-prod stack to production
+
+**Production Stack**: GatsbyBlogFrontend-prod (deployed automatically by pipeline)
+
+Created with the [setup-pipeline] Agent Standard Operation Procedure from the [AWS MCP](https://docs.aws.amazon.com/aws-mcp/latest/userguide/what-is-mcp-server.html).
+
+---
 
 ## Production Readiness
 
