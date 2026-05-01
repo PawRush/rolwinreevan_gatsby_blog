@@ -34,8 +34,8 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
 - [x] Step 9: Validate CDK Synth
 
 ## Phase 3: Deploy and Validate
-- [ ] Step 10: Execute CDK Deployment
-- [ ] Step 11: Validate CloudFormation Stack
+- [x] Step 10: Execute CDK Deployment
+- [x] Step 11: Validate CloudFormation Stack
 
 ## Phase 4: Update Documentation
 - [ ] Step 12: Finalize Deployment Plan
@@ -43,12 +43,14 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
 
 ## Deployment Info
 
-- Deployment URL: [after completion]
-- Stack name: [after creation]
-- Distribution ID: [after creation]
-- S3 bucket names: [after creation]
-- CloudFront log bucket: [after creation]
-- S3 log bucket: [after creation]
+- Deployment URL: https://d1foebn87eapdi.cloudfront.net
+- Stack name: RolwinBlogFrontend-preview-kamielw
+- Distribution ID: EN0OMCG2L0C85
+- S3 bucket name: rolwinblogfrontend-preview--cftos3s3bucketcae9f2be-zlnb7j0khytb
+- CloudFront log bucket: rolwinblogfrontend-previe-cftos3cloudfrontloggingb-omhk7p1p6xtk
+- S3 log bucket: rolwinblogfrontend-previe-cftos3s3loggingbucket64b-x8nibrjxwoto
+- Region: eu-central-1
+- Deployment timestamp: 2026-05-01T13:00:00Z
 
 ## Recovery Guide
 
