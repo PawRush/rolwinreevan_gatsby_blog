@@ -97,4 +97,12 @@ Deployment command: `./scripts/deploy.sh`
 
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for full details.
 
+## Pipeline
+
+Pipeline: https://eu-central-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/RolwinBlogPipeline/view
+
+Deploy: `git push origin deploy-to-aws-20260501_121659-kamielw`
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for full details. Created with the [setup-pipeline] Agent Standard Operation Procedure from the [AWS MCP](https://docs.aws.amazon.com/aws-mcp/latest/userguide/what-is-mcp-server.html).
+
 <!-- AUTO-GENERATED-CONTENT:END -->
