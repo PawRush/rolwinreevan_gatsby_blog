@@ -1,6 +1,6 @@
 ---
 title: Django – The widely used python framework for web development
-tags: [python, html, css ]
+tags: [python, html, css]
 date: 2019-01-07T05:25:44.226Z
 path: blog/django-the-widely-used-python-framework-for-web-development
 cover: ./django.png
@@ -17,7 +17,7 @@ The `Model` is the logical data structure behind the entire application and is r
 
 The `View` is the user interface that is usually HTML CSS and JS, if web services are used it can be a REST or a SOAP endpoint that is consumed by the UI.
 
-The `Controller` is the one that connects the Model and the View. Some data manipulation and processing can happen in the  controller.
+The `Controller` is the one that connects the Model and the View. Some data manipulation and processing can happen in the controller.
 
 Suppose a user enters a particular url in the browser the Django application will process the urls in the routes file when a match is found in the urls file it calls the respective controller and does the processing and renders the UI. Suppose a match is not found then the application will throw an error or it will load the default view that is been configured.
 
@@ -32,7 +32,7 @@ When you create a Django application with the command `django-admin startproject
 3. The inner `mysite/` is the actual python package for your project.
 4. `mysite/__init__.py` is the file that is used to initial all the function of the package. It tells the Python that the directory should be used as a package. This feature allows us to make a package out of a the current application and can be used in other systems. You can read [more about packages](https://docs.python.org/3/tutorial/modules.html#tut-packages) in the official Python docs.
 5. `mysite/settings.py` consists all the settings for the Django application. [Django settings](https://docs.djangoproject.com/en/2.1/topics/settings/) will tell you all about how settings work.
-6. `mysite/urls.py:` The URL declarations is a list that contains the url of the application linked to the controller  that performs some operations and renders the required data to the view. You can read more about URLs in [URL dispatcher](https://docs.djangoproject.com/en/2.1/topics/http/urls/).
+6. `mysite/urls.py:` The URL declarations is a list that contains the url of the application linked to the controller that performs some operations and renders the required data to the view. You can read more about URLs in [URL dispatcher](https://docs.djangoproject.com/en/2.1/topics/http/urls/).
 7. `mysite/wsgi.py:` This file is the entry point for various web servers that are WSGI-compatible. See [How to deploy with WSGI](https://docs.djangoproject.com/en/2.1/howto/deployment/wsgi/) for more details.
 
 Now create an app inside the Django app with the help of the command `python manage.py startapp myapp` this will create a app inside the Django application. Every Django application will consist of atlas one app. This application can be attached and detached from the system at any point of time and can be sued as a plugin for another application. Hence the apps created with Django behaves as a microservice that can be used for a specific purpose.
@@ -46,8 +46,8 @@ Now create an app inside the Django app with the help of the command `python man
 3. Everything under `myapp/templates/myapp/` are HTML files that define the view. Suppose you want to display the data from the controller you can pass objects such as a list.
 4. `urls.py` will contain the list of urls for the app.
 
-![](./django-files.png)
---
+## ![](./django-files.png)
+
 **The reason why Django is loved by many developers.**
 
 1. **Easy to learn since Python is the base language** Django is easy to learn and get started. A developer who has fundamental basics of python can easily pick up Django within no time. I like Django because of its simplicity of how it is built. With just a few lines of code you can do a lot.

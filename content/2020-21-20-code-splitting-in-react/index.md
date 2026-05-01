@@ -1,6 +1,6 @@
 ---
 title: Code splitting in react with React.lazy() and Suspense
-tags: [ html, css, reactjs ]
+tags: [html, css, reactjs]
 date: 2020-05-21T05:25:44.226Z
 path: blog/code-splitting-in-react
 cover: ./codesplitting.png
@@ -15,12 +15,11 @@ Suppose you are loading a library we use an `import` statement on the top of you
 
 ```javascript
 /**
-* Before code splitting
-*/
-import { Average } from './mathLibrary.js'
+ * Before code splitting
+ */
+import { Average } from "./mathLibrary.js"
 
-console.log(Average([0,1,4,3,2]));
-
+console.log(Average([0, 1, 4, 3, 2]))
 ```
 
 The sad part is all `import` statements have to be written on the top of your file. This creates a problem that all dependencies will be loaded at the beginning itself increasing the load time.
@@ -29,11 +28,11 @@ In React we can handle this a bit differently. We can load that code only when r
 
 ```javascript
 /**
-* After code splitting
-*/
-import('./mathLibrary.js')
-    .then(math => console.log( math.Average([0,1,4,3,2] )));
-
+ * After code splitting
+ */
+import("./mathLibrary.js").then(math =>
+  console.log(math.Average([0, 1, 4, 3, 2]))
+)
 ```
 
 When webpack comes across this code it automatically starts code splitting.
@@ -44,19 +43,17 @@ Suppose we want to do a code splitting for a component in `React` we do it with 
 The example below shows how to make a component Lazy loaded.
 
 ```javascript
-
 /**
-* Lazy load the component
-*/
-const AuthComponent = React.lazy(() => import('./auth'))
-
+ * Lazy load the component
+ */
+const AuthComponent = React.lazy(() => import("./auth"))
 ```
 
 The component will be loaded only when it will be needed from the server.
 
 ## Using a Lazy Loaded component with React.Suspense
 
-Suppose we are using a lazy-loaded component we need to wrap it with `React.Suspense`. 
+Suppose we are using a lazy-loaded component we need to wrap it with `React.Suspense`.
 
 React 16.6 added a `<Suspense>` component that lets you “wait” for some code to load and declaratively specify a loader or some skeleton while we’re waiting. `React.Suspense` is just like the Error boundaries which we use for our `React` apps.
 
@@ -73,11 +70,12 @@ function App () {
 }
 
 ```
+
 When the `<AuthComponent/>` is loaded from the server `loading...` is displayed till it's finished loading the component.
 
 ## When to use React.lazy & React.Suspense to perform code splitting?
 
-It can be very tricky to decide when to perform code splitting in an application. Some of the most common use cases I can think of is 
+It can be very tricky to decide when to perform code splitting in an application. Some of the most common use cases I can think of is
 
 1. Code splitting for page Routes.
 2. Opening a popup model

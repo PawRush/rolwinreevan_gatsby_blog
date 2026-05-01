@@ -25,8 +25,9 @@ You're currently using manual deployment. To automate deployments from GitHub, a
 Services used: CloudFront, S3, CloudFormation, IAM
 
 Questions? Ask your Coding Agent:
- - What resources were deployed to AWS?
- - How do I update my deployment?
+
+- What resources were deployed to AWS?
+- How do I update my deployment?
 
 ## Quick Commands
 
@@ -47,6 +48,7 @@ aws s3 ls "s3://rolwinblogfrontend-previe-cftos3cloudfrontloggingb-omhk7p1p6xtk/
 ## Production Readiness
 
 For production deployments, consider:
+
 - WAF Protection: Add AWS WAF with managed rules (Core Rule Set, Known Bad Inputs) and rate limiting
 - CSP Headers: Configure Content Security Policy in CloudFront response headers (`script-src 'self'`, `frame-ancestors 'none'`)
 - Custom Domain: Set up Route 53 and ACM certificate
@@ -55,7 +57,7 @@ For production deployments, consider:
 
 ---
 
-*Original deployment plan continues below...*
+_Original deployment plan continues below..._
 
 # Deployment Plan: RolwinBlog
 
@@ -64,6 +66,7 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
 **IMPORTANT**: Update this plan after EACH step completes. Mark the step `[x]` and update `last_updated` timestamp.
 
 ## Phase 1: Gather Context and Configure
+
 - [x] Step 0: Inform User of Execution Flow
 - [x] Step 1: Create Deployment Plan
 - [x] Step 2: Create Deploy Branch
@@ -72,16 +75,19 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
 - [x] Step 5: Revisit Deployment Plan
 
 ## Phase 2: Build CDK Infrastructure
+
 - [x] Step 6: Initialize CDK Foundation
 - [x] Step 7: Generate CDK Stack
 - [x] Step 8: Create Deployment Script
 - [x] Step 9: Validate CDK Synth
 
 ## Phase 3: Deploy and Validate
+
 - [x] Step 10: Execute CDK Deployment
 - [x] Step 11: Validate CloudFormation Stack
 
 ## Phase 4: Update Documentation
+
 - [x] Step 12: Finalize Deployment Plan
 - [x] Step 13: Update README.md
 
@@ -116,6 +122,7 @@ None.
 ## Session Log
 
 ### Session 1 - 2026-05-01T13:05:00Z
+
 Agent: Claude Sonnet 4.5
 Progress: Completed full deployment - all phases executed successfully
 Next: Deployment complete

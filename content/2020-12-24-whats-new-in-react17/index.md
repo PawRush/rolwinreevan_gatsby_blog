@@ -1,6 +1,6 @@
 ---
 title: What's new in React 17 ( No new features )
-tags: [ reactjs ]
+tags: [reactjs]
 date: 2020-12-24T05:25:44.226Z
 path: blog/react17-new-features
 cover: ./react17.png
@@ -33,13 +33,11 @@ In React we write a click event like:
 
 ```
 
-This event does not attach itself to the document node on which it is written rather it attaches itself to the document root in React 16 and previous versions of React. In React 17 the event is attached to the root dom container in which your tree is rendered. 
+This event does not attach itself to the document node on which it is written rather it attaches itself to the document root in React 16 and previous versions of React. In React 17 the event is attached to the root dom container in which your tree is rendered.
 
 ```javascript
-
-    const rootNode = document.getElementById('root');
-    ReactDOM.render(<App />, rootNode);
-
+const rootNode = document.getElementById("root")
+ReactDOM.render(<App />, rootNode)
 ```
 
 The below diagram shows us how the event progation works in React 16 vs React 17.
@@ -55,23 +53,17 @@ This is why we can nest muliple versions of React in React 17.
 With the new React 17 you don't need to import React while writing a React component.
 
 ```javascript
-
-const MyComponent = ()=> (
-    <div>"some text man"</div>
-)
-
+const MyComponent = () => <div>"some text man"</div>
 ```
 
-The above code will turn into 
+The above code will turn into
 
 ```javascript
-
-import { jsx as _jsx } from "react/jsx-runtime";
+import { jsx as _jsx } from "react/jsx-runtime"
 
 function MyComponent() {
-  return _jsx("div", `"some text man"`);
+  return _jsx("div", `"some text man"`)
 }
-
 ```
 
 The react team has worked closely with the babel developers to introduce this feature. There is a chance that this feature may reduce the bundle size according to the react docs.
@@ -80,7 +72,7 @@ The react team has worked closely with the babel developers to introduce this fe
 
 ### Delegate events to the root instead of the document
 
-Prior to React 17 the events were delegated to the document rather than to the root. This had created several issues mostly with embedding different versions of React into an application. With React 17 the events are delegated to the root. This helps us embed multiple versions of React into the application. 
+Prior to React 17 the events were delegated to the document rather than to the root. This had created several issues mostly with embedding different versions of React into an application. With React 17 the events are delegated to the root. This helps us embed multiple versions of React into the application.
 
 ### Clean up all effects before running any new effects
 

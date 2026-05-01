@@ -1,30 +1,28 @@
-import React from 'react';
-import { Layout } from 'antd';
-import { graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import Header from '../../components/PageLayout/Header';
-import SidebarWrapper from '../../components/PageLayout/Sidebar';
-import SEO from '../../components/Seo';
-import Comment from '../../components/Comment';
-import Config from '../../../config';
-import Utils from '../../utils/pageUtils';
+import React from "react"
+import { Layout } from "antd"
+import { graphql } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import Header from "../../components/PageLayout/Header"
+import SidebarWrapper from "../../components/PageLayout/Sidebar"
+import SEO from "../../components/Seo"
+import Comment from "../../components/Comment"
+import Config from "../../../config"
+import Utils from "../../utils/pageUtils"
 
-import 'prismjs/themes/prism-solarizedlight.css';
-import './highlight-syntax.less';
-import * as style from './post.module.less';
+import "prismjs/themes/prism-solarizedlight.css"
+import "./highlight-syntax.less"
+import * as style from "./post.module.less"
 
 const Post = ({ data }) => {
-  const { html, frontmatter } = data.markdownRemark;
-  const {
-    title, cover, excerpt, path,
-  } = frontmatter;
-  const image = getImage(cover);
+  const { html, frontmatter } = data.markdownRemark
+  const { title, cover, excerpt, path } = frontmatter
+  const image = getImage(cover)
 
   const canonicalUrl = Utils.resolvePageUrl(
     Config.siteUrl,
     Config.pathPrefix,
-    path,
-  );
+    path
+  )
   return (
     <Layout className="outerPadding">
       <Layout className="container">
@@ -32,23 +30,41 @@ const Post = ({ data }) => {
           title={title}
           description={excerpt}
           path={path}
-          keywords={['Rolwin', 'Reevan', 'Monteiro', 'FullStack developer', 'Javascript', 'ReactJS', 'NodeJS', 'Gatsby', 'technology']}
+          keywords={[
+            "Rolwin",
+            "Reevan",
+            "Monteiro",
+            "FullStack developer",
+            "Javascript",
+            "ReactJS",
+            "NodeJS",
+            "Gatsby",
+            "technology",
+          ]}
         />
         <Header />
         <SidebarWrapper>
           <div className="marginTopTitle">
             <h1>{title}</h1>
             <div className={style.bannerImgContainer}>
-              <GatsbyImage className={style.bannerImg} image={image} title={excerpt} alt={title} />
+              <GatsbyImage
+                className={style.bannerImg}
+                image={image}
+                title={excerpt}
+                alt={title}
+              />
             </div>
-            <article className={style.blogArticle} dangerouslySetInnerHTML={{ __html: html }} />
+            <article
+              className={style.blogArticle}
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
             <Comment pageCanonicalUrl={canonicalUrl} pageId={title} />
           </div>
         </SidebarWrapper>
       </Layout>
     </Layout>
-  );
-};
+  )
+}
 
 export const pageQuery = graphql`
   query($postPath: String!) {
@@ -99,6 +115,6 @@ export const pageQuery = graphql`
       }
     }
   }
-`;
+`
 
-export default Post;
+export default Post

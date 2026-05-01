@@ -1,9 +1,9 @@
-import React from 'react';
-import { Row, Col } from 'antd';
-import AboutTile from '../../AbouTile';
-import { stripTags, domHtml } from '../../../utils/stripTags';
+import React from "react"
+import { Row, Col } from "antd"
+import AboutTile from "../../AbouTile"
+import { stripTags, domHtml } from "../../../utils/stripTags"
 
-import SEO from '../../Seo';
+import SEO from "../../Seo"
 
 const pageText = {
   paraOne: `Hello !! My name is Rolwin Reevan Monteiro. I'm a full stack web developer who is
@@ -16,10 +16,10 @@ const pageText = {
     have hands on experience working with cloud infrastructures like <b>AWS/GCP</b> and have deployed applications
     keeping scalability in mind. Docker, Kubernetes, Jenkins, SonarQube are some of the cool
     tools I use for <b>CI/ CD</b>. I'm always a learner and a self taught programmer.`,
-};
+}
 
 const AboutMe = () => {
-  const description = `${pageText.paraOne} ${stripTags(pageText.paraTwo)}`;
+  const description = `${pageText.paraOne} ${stripTags(pageText.paraTwo)}`
   return (
     <>
       <div>
@@ -27,12 +27,19 @@ const AboutMe = () => {
           title="About"
           description={description}
           path=""
-          keywords={['Rolwin', 'Reevan', 'Monteiro', 'FullStack developer', 'Javascript', 'ReactJS', 'NodeJS', 'Gatsby']}
+          keywords={[
+            "Rolwin",
+            "Reevan",
+            "Monteiro",
+            "FullStack developer",
+            "Javascript",
+            "ReactJS",
+            "NodeJS",
+            "Gatsby",
+          ]}
         />
         <h1 className="titleSeparate">About Me</h1>
-        <p>
-          {pageText.paraOne}
-        </p>
+        <p>{pageText.paraOne}</p>
         <p dangerouslySetInnerHTML={domHtml(pageText.paraTwo)} />
       </div>
       <Row gutter={[20, 20]}>
@@ -91,6 +98,6 @@ const AboutMe = () => {
         </Col>
       </Row>
     </>
-  );
-};
-export default AboutMe;
+  )
+}
+export default AboutMe
