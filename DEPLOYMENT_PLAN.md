@@ -1,72 +1,68 @@
 ---
-sop_name: deploy-frontend-app
-repo_name: rolwinreevan_gatsby_blog
+sop_name: setup-pipeline
+repo_name: PawRush/rolwinreevan_gatsby_blog
 app_name: RolwinBlog
-app_type: Frontend Application (Gatsby Static Site)
+app_type: CI/CD Pipeline
 branch: deploy-to-aws-20260506_150212-kamielw
-created: 2026-05-06T15:43:00Z
-last_updated: 2026-05-06T15:50:00Z
+created: 2026-05-06T15:56:00Z
+last_updated: 2026-05-06T15:58:00Z
 ---
 
-# Deployment Plan: Rolwin Reevan Gatsby Blog
+# Deployment Plan: RolwinBlog Pipeline
 
 Coding Agents should follow this Deployment Plan, and validate previous progress if picking up the Deployment in a new coding session.
 
 **IMPORTANT**: Update this plan after EACH step completes. Mark the step `[x]` and update `last_updated` timestamp.
 
-## Build Configuration Detected
-- Framework: Gatsby
-- Package manager: npm
-- Build command: `npm run build`
-- Output directory: `public/`
-- Base path: `/` (root)
-- Trailing slash: Default (not configured)
-- Lint command: None detected
-
 ## Phase 1: Gather Context and Configure
 - [x] Step 0: Inform User of Execution Flow
 - [x] Step 1: Create Deployment Plan
-- [x] Step 2: Create Deploy Branch
-- [x] Step 3: Detect Build Configuration
-- [x] Step 4: Validate Prerequisites
-- [x] Step 5: Revisit Deployment Plan
+- [x] Step 2: Detect Existing Infrastructure
+  - [x] 2.1: Detect stacks, frontend, and backend
+  - [x] 2.2: Detect app name and git repository
+  - [x] 2.3: Determine quality checks
+  - [x] 2.4: User confirmation
+  - [x] 2.5: Create CodeConnection (SKIP - using existing)
+  - [x] 2.6: Ensure Production Secrets (SKIP - no secrets required)
 
-## Phase 2: Build CDK Infrastructure
-- [x] Step 6: Initialize CDK Foundation
-- [x] Step 7: Generate CDK Stack
-- [x] Step 8: Create Deployment Script
-- [x] Step 9: Validate CDK Synth
+**Phase 1 Checkpoint**
 
-## Phase 3: Deploy and Validate
-- [x] Step 10: Execute CDK Deployment
-- [x] Step 11: Validate CloudFormation Stack
+## Phase 2: Build and Deploy Pipeline
+- [ ] Step 3: Create CDK Pipeline Stack
+- [ ] Step 4: CDK Bootstrap
+- [ ] Step 5: Deploy Pipeline
+  - [ ] 5.1: Push to remote
+  - [ ] 5.2: Authorize CodeConnection (SKIP - already authorized)
+  - [ ] 5.3: Deploy pipeline stack
+  - [ ] 5.4: Trigger pipeline
+- [ ] Step 6: Monitor Pipeline
 
-## Phase 4: Update Documentation
-- [ ] Step 12: Finalize Deployment Plan
-- [ ] Step 13: Update README.md
+**Phase 2 Checkpoint**
+
+## Phase 3: Documentation
+- [ ] Step 7: Finalize Deployment Plan
+- [ ] Step 8: Update README.md
+
+**COMPLETION STEP**
 
 ## Deployment Info
 
-- Deployment URL: https://d1foebn87eapdi.cloudfront.net
-- Stack name: RolwinBlogFrontend-preview-kamielw
-- Distribution ID: EN0OMCG2L0C85
-- Region: eu-central-1
-- S3 Bucket: rolwinblogfrontend-preview--cftos3s3bucketcae9f2be-zlnb7j0khytb
-- CloudFront Log Bucket: rolwinblogfrontend-previe-cftos3cloudfrontloggingb-omhk7p1p6xtk
-- S3 Log Bucket: rolwinblogfrontend-previe-cftos3s3loggingbucket64b-x8nibrjxwoto
-- Deployment timestamp: 2026-05-06 15:55 GMT
+- CodeConnection ARN: arn:aws:codeconnections:eu-central-1:189681391221:connection/ee7a600a-99ab-4b3a-bf6c-b42cc9f5a026
+- Repository: PawRush/rolwinreevan_gatsby_blog
+- Branch: deploy-to-aws-20260506_150212-kamielw
+- Pipeline Stack: (pending)
+- Pipeline URL: (pending)
+- Pipeline Name: (pending)
 
 ## Recovery Guide
 
 ```bash
-# Rollback
-cd infra && npx cdk destroy "RolwinBlogFrontend-preview-$(whoami)" --force
+# Rollback - destroy pipeline stack
+(cd infra && npm run destroy:pipeline)
 
-# Redeploy
-./scripts/deploy.sh
-
-# Manual invalidation (if needed)
-aws cloudfront create-invalidation --distribution-id "<DISTRIBUTION_ID>" --paths "/*"
+# Or manual deletion
+aws codepipeline delete-pipeline --name "RolwinBlogPipeline"
+aws cloudformation delete-stack --stack-name "RolwinBlogPipelineStack"
 ```
 
 ## Issues Encountered
@@ -75,7 +71,7 @@ None.
 
 ## Session Log
 
-### Session 1 - 2026-05-06T15:43:00Z
+### Session 1 - 2026-05-06T15:56:00Z
 Agent: Claude Sonnet 4.5
-Progress: Initialized deployment plan
-Next: Create deploy branch (deploy-to-aws-20260506_150212-kamielw)
+Progress: Created deployment plan
+Next: Detect existing infrastructure
