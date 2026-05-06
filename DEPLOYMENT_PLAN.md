@@ -5,7 +5,7 @@ app_name: RolwinBlog
 app_type: CI/CD Pipeline
 branch: deploy-to-aws-20260506_150212-kamielw
 created: 2026-05-06T15:56:00Z
-last_updated: 2026-05-06T15:58:00Z
+last_updated: 2026-05-06T15:59:00Z
 ---
 
 # Deployment Plan: RolwinBlog Pipeline
@@ -28,10 +28,10 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
 **Phase 1 Checkpoint**
 
 ## Phase 2: Build and Deploy Pipeline
-- [ ] Step 3: Create CDK Pipeline Stack
-- [ ] Step 4: CDK Bootstrap
-- [ ] Step 5: Deploy Pipeline
-  - [ ] 5.1: Push to remote
+- [x] Step 3: Create CDK Pipeline Stack
+- [x] Step 4: CDK Bootstrap
+- [...] Step 5: Deploy Pipeline
+  - [...] 5.1: Push to remote
   - [ ] 5.2: Authorize CodeConnection (SKIP - already authorized)
   - [ ] 5.3: Deploy pipeline stack
   - [ ] 5.4: Trigger pipeline
