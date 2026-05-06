@@ -1,31 +1,36 @@
 # Deployment Summary
 
-Your app is deployed to AWS! Preview URL: **https://d1foebn87eapdi.cloudfront.net**
+Your app has a CI/CD pipeline! Changes pushed to GitHub branch `deploy-to-aws-20260506_150212-kamielw` will be deployed automatically.
 
-**Next Step: Automate Deployments**
+**Production URL:** https://d1spvuegorqnnh.cloudfront.net  
+**Preview URL:** https://d1foebn87eapdi.cloudfront.net
 
-You're currently using manual deployment. To automate deployments from GitHub, ask your coding agent to set up AWS CodePipeline using an agent SOP for pipeline creation. Try: "create a pipeline using AWS SOPs"
+Pipeline console: https://eu-central-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/RolwinBlogPipeline/view
 
-Services used: CloudFront, S3, CloudFormation, IAM
+Services used: CodePipeline, CodeBuild, CodeConnections, CloudFormation, IAM, CloudFront, S3
 
 Questions? Ask your Coding Agent:
-- What resources were deployed to AWS?
-- How do I update my deployment?
+- How can I change the source branch?
+- What's the difference between preview and prod URLs?
+- How do I view build logs?
 
 ## Quick Commands
 
 ```bash
-# View deployment status
+# View pipeline status
+export AWS_PAGER="" && aws codepipeline get-pipeline-state --name "RolwinBlogPipeline" --region eu-central-1 --query 'stageStates[*].[stageName,latestExecution.status]' --output table
+
+# View build logs
+aws logs tail "/aws/codebuild/RolwinBlogPipelineStack-Synth" --follow --region eu-central-1
+
+# Trigger pipeline manually
+aws codepipeline start-pipeline-execution --name "RolwinBlogPipeline" --region eu-central-1
+
+# View preview deployment status
 aws cloudformation describe-stacks --stack-name "RolwinBlogFrontend-preview-kamielw" --region eu-central-1 --query 'Stacks[0].StackStatus' --output text
 
-# Invalidate CloudFront cache
-aws cloudfront create-invalidation --distribution-id "EN0OMCG2L0C85" --paths "/*"
-
-# View CloudFront access logs (last 20)
-aws s3 ls "s3://rolwinblogfrontend-previe-cftos3cloudfrontloggingb-omhk7p1p6xtk/" --recursive | tail -20
-
-# Redeploy
-./scripts/deploy.sh
+# View production deployment status
+aws cloudformation describe-stacks --stack-name "RolwinBlogFrontend-prod" --region eu-central-1 --query 'Stacks[0].StackStatus' --output text
 ```
 
 ## Production Readiness
@@ -117,3 +122,14 @@ Progress: Completed full deployment to AWS
 - Validated CloudFormation stack
 - Website live at https://d1foebn87eapdi.cloudfront.net
 Status: **Deployment complete**
+
+### Session 2 - 2026-05-06T15:56:00Z - 2026-05-06T16:05:00Z
+Agent: Claude Sonnet 4.5
+Progress: Complete CI/CD pipeline setup
+- Detected Gatsby frontend, no backend/secrets
+- Used existing CodeConnection (ee7a600a-99ab-4b3a-bf6c-b42cc9f5a026)
+- Created CDK Pipeline Stack with GitHub integration
+- Deployed pipeline stack successfully
+- Pipeline executed all stages (Source, Build, UpdatePipeline, Assets, Deploy)
+- Production website deployed: https://d1spvuegorqnnh.cloudfront.net
+Status: **Pipeline operational and ready for use**

@@ -13,11 +13,16 @@ This starter consists of ant design system you can use it for your personal blog
 
 ## Deployment
 
-Deployed at: **https://d1foebn87eapdi.cloudfront.net**, using the [deploy-frontend-app] Agent Standard Operation Procedure from the [AWS MCP](https://docs.aws.amazon.com/aws-mcp/latest/userguide/what-is-mcp-server.html).
+**Preview:** https://d1foebn87eapdi.cloudfront.net  
+**Production:** https://d1spvuegorqnnh.cloudfront.net
 
-Deployment command: `./scripts/deploy.sh`
+### Pipeline
 
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for full details.
+Pipeline: https://eu-central-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/RolwinBlogPipeline/view
+
+Deploy: `git push origin deploy-to-aws-20260506_150212-kamielw`
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for full details. Created with the [setup-pipeline] Agent Standard Operation Procedure from the [AWS MCP](https://docs.aws.amazon.com/aws-mcp/latest/userguide/what-is-mcp-server.html).
 
 ## 🚀 Quick start
 
