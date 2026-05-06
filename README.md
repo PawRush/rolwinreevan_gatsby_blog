@@ -11,6 +11,13 @@
 
 This starter consists of ant design system you can use it for your personal blog. I have give a lot of time in developing this starter because I found that there were not much starters with a very good design. Please give a star to this project if you have like it to encourage me 😄. Thank you.
 
+## Deployment
+
+Deployed at: **https://d1foebn87eapdi.cloudfront.net**, using the [deploy-frontend-app] Agent Standard Operation Procedure from the [AWS MCP](https://docs.aws.amazon.com/aws-mcp/latest/userguide/what-is-mcp-server.html).
+
+Deployment command: `./scripts/deploy.sh`
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for full details.
 
 ## 🚀 Quick start
 
