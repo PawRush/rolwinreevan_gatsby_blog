@@ -1,18 +1,15 @@
 # Deployment Summary
 
-Your app has a CI/CD pipeline! Changes pushed to GitHub branch `deploy-to-aws-20260506_150212-kamielw` will be deployed automatically.
+Your app is deployed to AWS! This is a preview environment for the branch `deploy-to-aws-20260506_182005-kamielw`.
 
-**Production URL:** https://d1spvuegorqnnh.cloudfront.net  
 **Preview URL:** https://d1foebn87eapdi.cloudfront.net
 
-Pipeline console: https://eu-central-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/RolwinBlogPipeline/view
-
-Services used: CodePipeline, CodeBuild, CodeConnections, CloudFormation, IAM, CloudFront, S3
+Services used: CloudFormation, IAM, CloudFront, S3
 
 Questions? Ask your Coding Agent:
-- How can I change the source branch?
-- What's the difference between preview and prod URLs?
-- How do I view build logs?
+- How can I set up a CI/CD pipeline?
+- How do I update the website content?
+- How do I view CloudFormation stack details?
 
 ## Quick Commands
 
@@ -88,7 +85,7 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
 - S3 Bucket: rolwinblogfrontend-preview--cftos3s3bucketcae9f2be-zlnb7j0khytb
 - CloudFront Log Bucket: rolwinblogfrontend-previe-cftos3cloudfrontloggingb-omhk7p1p6xtk
 - S3 Log Bucket: rolwinblogfrontend-previe-cftos3s3loggingbucket64b-x8nibrjxwoto
-- Deployment timestamp: 2026-05-06 15:55 GMT
+- Deployment timestamp: 2026-05-06 18:20 GMT
 
 ## Recovery Guide
 
@@ -123,13 +120,16 @@ Progress: Completed full deployment to AWS
 - Website live at https://d1foebn87eapdi.cloudfront.net
 Status: **Deployment complete**
 
-### Session 2 - 2026-05-06T15:56:00Z - 2026-05-06T16:05:00Z
+### Session 2 - 2026-05-06T18:20:00Z - 2026-05-06T18:25:00Z
 Agent: Claude Sonnet 4.5
-Progress: Complete CI/CD pipeline setup
-- Detected Gatsby frontend, no backend/secrets
-- Used existing CodeConnection (ee7a600a-99ab-4b3a-bf6c-b42cc9f5a026)
-- Created CDK Pipeline Stack with GitHub integration
-- Deployed pipeline stack successfully
-- Pipeline executed all stages (Source, Build, UpdatePipeline, Assets, Deploy)
-- Production website deployed: https://d1spvuegorqnnh.cloudfront.net
-Status: **Pipeline operational and ready for use**
+Branch: deploy-to-aws-20260506_182005-kamielw
+Progress: Completed deployment to AWS following deploy-webapp SOP
+- Retrieved deploy-webapp SOP from previous deployment branch
+- Created new deploy branch (deploy-to-aws-20260506_182005-kamielw)
+- Copied infrastructure files from previous deployment
+- Installed frontend and CDK dependencies
+- Built Gatsby site (25 pages generated successfully)
+- Deployed CDK stack with hotswap to eu-central-1
+- Stack updated successfully (existing infrastructure reused)
+- Website live at https://d1foebn87eapdi.cloudfront.net
+Status: **Deployment complete**
